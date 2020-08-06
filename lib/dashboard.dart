@@ -196,7 +196,17 @@ class _DashboardState extends State<Dashboard>
                     return SizedBox();
                   } else if (snapshot.hasData &&
                       snapshot.data.documents.length == 0) {
-                    return Container();
+                    return Container(
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.52),
+                      padding: EdgeInsets.all(30.0),
+                      width: double.maxFinite,
+                      child: new Text("Add record to get started..",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.dmSans(
+                              textStyle: TextStyle(fontSize: 18.0),
+                              color: Colors.black54)),
+                    );
                   } else {
                     return Padding(
                       padding: const EdgeInsets.only(top: 8.0),
