@@ -213,9 +213,17 @@ class WeightCard extends StatelessWidget {
               child: new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(data[QueryTags.qWeight].toString(),
-                      style: GoogleFonts.dmSans(
-                          textStyle: TextStyle(fontSize: 25.0))),
+                  Row(
+                    children: [
+                      Text(data[QueryTags.qWeight].toString(),
+                          style: GoogleFonts.dmSans(
+                              textStyle: TextStyle(fontSize: 25.0))),
+                      Text("kg",
+                          style: GoogleFonts.dmSans(
+                              color: Colors.black54,
+                              textStyle: TextStyle(fontSize: 15.0))),
+                    ],
+                  ),
                   Text(
                       data[QueryTags.qDateTime] != null
                           ? Utility.firestoreDTFormat(data[QueryTags.qDateTime])
