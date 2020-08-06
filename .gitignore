@@ -31,6 +31,7 @@
 .pub/
 /build/
 /android/app/google-services.json
+/android/key.properties
 /ios/runner/GoogleService-Info.plist
 
 # Web related

@@ -33,6 +33,7 @@ class _DashboardState extends State<Dashboard>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFf5f5f5),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         centerTitle: false,

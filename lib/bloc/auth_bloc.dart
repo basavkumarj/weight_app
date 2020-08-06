@@ -46,13 +46,11 @@ class AuthBloc extends BlocBase {
             idToken: String.fromCharCodes(appleCred.identityToken),
             accessToken: String.fromCharCodes(appleCred.authorizationCode));
         final user = await FirebaseAuth.instance.signInWithCredential(cred);
-        FirebaseAuth.instance.currentUser().then((val) async {
-          UserUpdateInfo updateUser = UserUpdateInfo();
-          updateUser.displayName =
-              "${appleCred.fullName.givenName} ${appleCred.fullName.familyName}";
-          await val.updateProfile(updateUser);
-          _statusSubject.add(Constants.AUTH_STATUS_SUCCESS);
-        });
+        UserUpdateInfo updateInfo = UserUpdateInfo();
+        updateInfo.displayName =
+            "${appleCred.fullName.givenName} ${appleCred.fullName.familyName}";
+        await user.user.updateProfile(updateInfo);
+        _statusSubject.add(Constants.AUTH_STATUS_SUCCESS);
         break;
       case AuthorizationStatus.cancelled:
         _statusSubject.add(Constants.AUTH_STATUS_CANCELLED);
