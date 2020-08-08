@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +11,6 @@ import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/dash_bloc.dart';
 import 'package:weight/constants.dart';
 import 'package:weight/query_tags.dart';
-import 'package:weight/utility.dart';
 import 'package:weight/widgets.dart';
 
 class Dashboard extends StatefulWidget {
@@ -23,6 +23,7 @@ class _DashboardState extends State<Dashboard>
   DashboardBloc dashboardBloc;
   final _formKey = GlobalKey<FormState>();
   double _weight, _height;
+  Map<String, dynamic> _bmiMap = new Map();
 
   @override
   void initState() {
@@ -54,6 +55,11 @@ class _DashboardState extends State<Dashboard>
                 stream: dashboardBloc.bmiStream,
                 builder: (BuildContext context,
                     AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                  bool _isDisabled =
+                      MapEquality().equals(snapshot.data, _bmiMap);
+                  if (snapshot.hasData && snapshot.data != null) {
+                    _bmiMap = snapshot.data;
+                  }
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -62,10 +68,14 @@ class _DashboardState extends State<Dashboard>
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.all(8.0),
                         margin: EdgeInsets.only(top: 16.0, bottom: 4.0),
-                        child: RadialRing(
+                        child: RadialProgress(
                           type: snapshot.data != null
                               ? snapshot.data[QueryTags.qBMIType]
                               : Constants.BMI_NORMAL,
+                          percentValue: snapshot.data != null
+                              ? snapshot.data[QueryTags.qBMIPercent]
+                              : 0.0,
+                          isAnimateDisabled: _isDisabled,
                           child: new Column(
                             children: [
                               Text("bmi",
@@ -325,7 +335,6 @@ class _DashboardState extends State<Dashboard>
                                       weight: _weight, height: _height)
                                   : dashboardBloc.saveWeight(_weight);
                               Navigator.of(context).pop();
-                              dashboardBloc.updateList();
                             }
                           },
                           child: new Text("Record"),

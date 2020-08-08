@@ -27,6 +27,14 @@ class Utility {
     }
   }
 
+  static LinearGradient getBaseShader(int type) {
+    if (type <= Constants.BMI_NORMAL) {
+      return LinearGradient(colors: [Colors.black12, Colors.black12]);
+    } else {
+      return LinearGradient(
+          colors: [Colors.greenAccent, Colors.green, Color(0xFF006400)]);
+    }
+  }
 
   static LinearGradient getTopShader(int type) {
     if (type == Constants.BMI_UNDERWEIGHT) {

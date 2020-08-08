@@ -7,7 +7,6 @@ import 'package:weight/user_data.dart';
 import 'package:weight/utility.dart';
 
 class DashboardBloc implements BlocBase {
-
   FirebaseUser firebaseUser;
   final _bmiSubject = new BehaviorSubject<Map<String, dynamic>>();
   final _listSubject = new BehaviorSubject<QuerySnapshot>();
@@ -44,14 +43,18 @@ class DashboardBloc implements BlocBase {
         .getDocuments(source: Source.cache);
     double weight = weightData.documents[0][QueryTags.qWeight];
     double height = await new UserData().getHeight();
-    double bmi = Utility.calulateBMI(height, weight);
-    Utility.getBMIType(bmi);
-    _bmiSubject.add({
-      QueryTags.qBMI: bmi.toStringAsFixed(1),
-      QueryTags.qHeight: height,
-      QueryTags.qWeight: weight,
-      QueryTags.qBMIType: Utility.getBMIType(bmi),
-    });
+    if (height != null && weight != null) {
+      double bmi = Utility.calulateBMI(height, weight);
+      double percent = (bmi / 24.9).abs();
+      Utility.getBMIType(bmi);
+      _bmiSubject.add({
+        QueryTags.qBMI: bmi.toStringAsFixed(1),
+        QueryTags.qHeight: height,
+        QueryTags.qWeight: weight,
+        QueryTags.qBMIType: Utility.getBMIType(bmi),
+        QueryTags.qBMIPercent: percent < 1.0 ? percent : percent - 1
+      });
+    }
   }
 
   Future<double> getHeight() async {
@@ -74,6 +77,7 @@ class DashboardBloc implements BlocBase {
       QueryTags.qDateTime: FieldValue.serverTimestamp()
     });
     calculateData();
+    updateList();
   }
 
   Future<void> saveWeightHeight({double weight, double height}) async {
@@ -89,6 +93,7 @@ class DashboardBloc implements BlocBase {
     });
     UserData().saveHeight(height);
     calculateData();
+    updateList();
   }
 
   Future<void> deleteData(String id) async {
@@ -124,7 +129,5 @@ class DashboardBloc implements BlocBase {
         .listen((event) {
       _listSubject.add(event);
     });
-    //.getDocuments(source: Source.serverAndCache)
-    //.then((value) => _listSubject.add(value));
   }
 }

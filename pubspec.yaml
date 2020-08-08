@@ -21,6 +21,7 @@ dependencies:
   intl: ^0.16.1
   shared_preferences: ^0.5.8
   share: ^0.6.4+3
+  collection: ^1.14.13
 
 dev_dependencies:
   flutter_test:

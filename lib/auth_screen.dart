@@ -1,16 +1,11 @@
 //import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:apple_sign_in/apple_sign_in.dart' as appleSignIn;
-import 'package:apple_sign_in/apple_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:weight/bloc/auth_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/splash_bloc.dart';
 import 'package:weight/constants.dart';
-import 'package:weight/bloc/dash_bloc.dart';
-import 'package:weight/dashboard.dart';
 import 'package:weight/splash_screen.dart';
 import 'package:weight/widgets.dart';
 

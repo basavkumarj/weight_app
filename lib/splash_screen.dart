@@ -34,11 +34,13 @@ class SplashScreen extends StatelessWidget {
         }), (_) => false);
       }
     });
-    return Container(
-      child: Center(
-        child: defaultTargetPlatform == TargetPlatform.android
-            ? CircularProgressIndicator()
-            : CupertinoActivityIndicator(),
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: defaultTargetPlatform == TargetPlatform.android
+              ? CircularProgressIndicator()
+              : CupertinoActivityIndicator(),
+        ),
       ),
     );
   }
