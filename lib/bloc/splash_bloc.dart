@@ -4,24 +4,25 @@ import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/constants.dart';
 
 class SplashBloc implements BlocBase {
-  final _subject = BehaviorSubject<int>();
+  final _subject = BehaviorSubject<AuthState>();
 
-  Stream<int> get stream => _subject.stream;
+  Stream<AuthState> get stream => _subject.stream;
 
   @override
   void dispose() {
     _subject.close();
   }
-  SplashBloc(){
+
+  SplashBloc() {
     isUserLoggedIn();
   }
 
   void isUserLoggedIn() async {
     FirebaseUser firebaseUser = await FirebaseAuth.instance.currentUser();
     if (firebaseUser != null) {
-      _subject.add(Constants.AUTH_STATUS_LOGGED_IN);
+      _subject.add(AuthState.AUTH_STATUS_LOGGED_IN);
     } else {
-      _subject.add(Constants.AUTH_STATUS_NOT_LOGGED_IN);
+      _subject.add(AuthState.AUTH_STATUS_NOT_LOGGED_IN);
     }
   }
 }

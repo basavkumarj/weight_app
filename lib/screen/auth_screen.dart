@@ -2,12 +2,12 @@
 import 'package:apple_sign_in/apple_sign_in.dart' as appleSignIn;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:weight/bloc/auth_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/splash_bloc.dart';
 import 'package:weight/constants.dart';
-import 'package:weight/splash_screen.dart';
-import 'package:weight/widgets.dart';
+import 'package:weight/screen/splash_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -15,15 +15,15 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  AuthBloc authBloc;
+  AuthBloc _authBloc;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    authBloc = BlocProvider.of<AuthBloc>(context);
-    authBloc.statusStream.listen((event) {
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+    _authBloc.statusStream.listen((event) {
       print(event);
-      if (event == Constants.AUTH_STATUS_SUCCESS) {
+      if (event == FirebaseAuthState.AUTH_STATUS_SUCCESS) {
         Navigator.of(context).pushAndRemoveUntil(
             new MaterialPageRoute(builder: (BuildContext context) {
           return BlocProvider<SplashBloc>(
@@ -50,21 +50,18 @@ class _AuthScreenState extends State<AuthScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             defaultTargetPlatform == TargetPlatform.iOS
-                ? appleSignIn.AppleSignInButton(
-                    type: appleSignIn.ButtonType.continueButton,
-                    style: appleSignIn.ButtonStyle.black,
-                    onPressed: () => authBloc.signInWithApple(),
+                ? AppleSignInButton(
+                    onPressed: () => _authBloc.signInWithApple(),
+                    style: AppleButtonStyle.black,
                   )
                 : new SizedBox(),
             SizedBox(
               height: 10.0,
             ),
             GoogleSignInButton(
-              onPressed: () => authBloc.signInWithGoogle(),
+              onPressed: () => _authBloc.signInWithGoogle(),
+              darkMode: true,
             ),
-            SizedBox(
-              height: 50.0,
-            )
           ],
         ),
       )),

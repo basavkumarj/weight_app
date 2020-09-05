@@ -7,9 +7,9 @@ import 'package:weight/constants.dart';
 
 class AuthBloc extends BlocBase {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final _statusSubject = BehaviorSubject<int>();
+  final _statusSubject = BehaviorSubject<FirebaseAuthState>();
 
-  Stream<int> get statusStream => _statusSubject.stream;
+  Stream<FirebaseAuthState> get statusStream => _statusSubject.stream;
 
   @override
   void dispose() {
@@ -27,9 +27,9 @@ class AuthBloc extends BlocBase {
     final AuthResult authResult =
         await firebaseAuth.signInWithCredential(authCredential);
     if (authResult.user != null) {
-      _statusSubject.add(Constants.AUTH_STATUS_SUCCESS);
+      _statusSubject.add(FirebaseAuthState.AUTH_STATUS_SUCCESS);
     } else {
-      _statusSubject.add(Constants.AUTH_STATUS_ERROR);
+      _statusSubject.add(FirebaseAuthState.AUTH_STATUS_ERROR);
     }
   }
 
@@ -50,16 +50,16 @@ class AuthBloc extends BlocBase {
         updateInfo.displayName =
             "${appleCred.fullName.givenName} ${appleCred.fullName.familyName}";
         await user.user.updateProfile(updateInfo);
-        _statusSubject.add(Constants.AUTH_STATUS_SUCCESS);
+        _statusSubject.add(FirebaseAuthState.AUTH_STATUS_SUCCESS);
         break;
       case AuthorizationStatus.cancelled:
-        _statusSubject.add(Constants.AUTH_STATUS_CANCELLED);
+        _statusSubject.add(FirebaseAuthState.AUTH_STATUS_CANCELLED);
         break;
       case AuthorizationStatus.error:
-        _statusSubject.add(Constants.AUTH_STATUS_ERROR);
+        _statusSubject.add(FirebaseAuthState.AUTH_STATUS_ERROR);
         break;
       default:
-        _statusSubject.add(Constants.AUTH_STATUS_ERROR);
+        _statusSubject.add(FirebaseAuthState.AUTH_STATUS_ERROR);
         break;
     }
   }

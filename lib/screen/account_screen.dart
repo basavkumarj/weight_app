@@ -6,8 +6,7 @@ import 'package:weight/bloc/account_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/splash_bloc.dart';
 import 'package:weight/query_tags.dart';
-import 'package:weight/splash_screen.dart';
-import 'package:weight/widgets.dart';
+import 'package:weight/screen/splash_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   @override

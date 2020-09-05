@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weight/auth_screen.dart';
+import 'package:weight/screen/auth_screen.dart';
 import 'package:weight/bloc/auth_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/dash_bloc.dart';
 import 'package:weight/bloc/splash_bloc.dart';
-import 'package:weight/dashboard.dart';
-import 'package:weight/splash_screen.dart';
+import 'package:weight/screen/dashboard.dart';
+import 'package:weight/screen/splash_screen.dart';
 
 void main() {
   runApp(MyApp());

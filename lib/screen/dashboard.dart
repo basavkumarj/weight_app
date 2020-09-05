@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
-import 'package:weight/account_screen.dart';
+import 'package:weight/screen/account_screen.dart';
 import 'package:weight/bloc/account_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/dash_bloc.dart';
 import 'package:weight/constants.dart';
 import 'package:weight/query_tags.dart';
-import 'package:weight/widgets.dart';
+import 'package:weight/widgets/radial_progress.dart';
+import 'package:weight/widgets/weight_card.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -198,7 +199,7 @@ class _DashboardState extends State<Dashboard>
                     ],
                   );
                 }),
-            new StreamBuilder(
+            StreamBuilder(
                 stream: dashboardBloc.listStream,
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
