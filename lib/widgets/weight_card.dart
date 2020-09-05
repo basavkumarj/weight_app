@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:weight/bloc/dash_bloc.dart';
-import 'package:weight/query_tags.dart';
-import 'package:weight/utility.dart';
+import 'package:weight/other/query_tags.dart';
+import 'package:weight/other/utility.dart';
 
 class WeightCard extends StatelessWidget {
   final DocumentSnapshot data;

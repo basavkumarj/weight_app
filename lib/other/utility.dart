@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:weight/constants.dart';
+import 'package:weight/other/constants.dart';
 
 class Utility {
   static double calulateBMI(double height, double weight) {

@@ -9,8 +9,8 @@ import 'package:weight/screen/account_screen.dart';
 import 'package:weight/bloc/account_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/dash_bloc.dart';
-import 'package:weight/constants.dart';
-import 'package:weight/query_tags.dart';
+import 'package:weight/other/constants.dart';
+import 'package:weight/other/query_tags.dart';
 import 'package:weight/widgets/radial_progress.dart';
 import 'package:weight/widgets/weight_card.dart';
 

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:weight/bloc/bloc_provider.dart';
-import 'package:weight/constants.dart';
+import 'package:weight/other/constants.dart';
 
 class SplashBloc implements BlocBase {
   final _subject = BehaviorSubject<AuthState>();

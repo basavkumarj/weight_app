@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:weight/bloc/account_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/splash_bloc.dart';
-import 'package:weight/query_tags.dart';
+import 'package:weight/other/query_tags.dart';
 import 'package:weight/screen/splash_screen.dart';
 
 class AccountScreen extends StatefulWidget {

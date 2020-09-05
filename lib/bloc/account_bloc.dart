@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:weight/bloc/bloc_provider.dart';
-import 'package:weight/query_tags.dart';
-import 'package:weight/user_data.dart';
+import 'package:weight/other/query_tags.dart';
+import 'package:weight/other/user_data.dart';
 
 class AccountBloc implements BlocBase {
   final _userSubject = new BehaviorSubject<Map<String, dynamic>>();

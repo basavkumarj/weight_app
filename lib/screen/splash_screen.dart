@@ -6,7 +6,7 @@ import 'package:weight/bloc/auth_bloc.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:weight/bloc/dash_bloc.dart';
 import 'package:weight/bloc/splash_bloc.dart';
-import 'package:weight/constants.dart';
+import 'package:weight/other/constants.dart';
 import 'package:weight/screen/dashboard.dart';
 
 class SplashScreen extends StatelessWidget {

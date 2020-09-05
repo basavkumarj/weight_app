@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:weight/bloc/bloc_provider.dart';
 import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:weight/constants.dart';
+import 'package:weight/other/constants.dart';
 
 class AuthBloc extends BlocBase {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;

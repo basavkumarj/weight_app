@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weight/query_tags.dart';
+import 'package:weight/other/query_tags.dart';
 
 class UserData {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();

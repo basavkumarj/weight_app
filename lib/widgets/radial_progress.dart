@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:weight/constants.dart';
-import 'package:weight/utility.dart';
+import 'package:weight/other/constants.dart';
+import 'package:weight/other/utility.dart';
 import 'package:vector_math/vector_math.dart' as math;
 
 class RadialProgress extends StatefulWidget {
